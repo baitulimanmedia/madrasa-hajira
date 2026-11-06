@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>মাদ্রাসা হাজিরা ম্যানেজমেন্ট</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div>
+
+            <h1 id="headerMadrasaName">
+                মাদ্রাসা হাজিরা
+            </h1>
+
+            <p id="headerMadrasaAddress">
+                Attendance Management System
+            </p>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <div
+                class="header-date"
+                id="currentDate"
+            >
+                আজকের তারিখ
+            </div>
+
+            <!-- DARK MODE -->
+
+            <label class="theme-switch">
+
+                <input
+                    type="checkbox"
+                    id="darkModeToggle"
+                >
+
+                <span class="theme-slider">
+
+                    <span class="theme-sun">
+                        ☀️
+                    </span>
+
+                    <span class="theme-moon">
+                        🌙
+                    </span>
+
+                </span>
+
+            </label>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="navigation">
+
+        <button
+            class="nav-btn active"
+            data-section="attendanceSection"
+        >
+            ✅ হাজিরা
+        </button>
+
+
+        <button
+            class="nav-btn"
+            data-section="classesSection"
+        >
+            🏫 ক্লাস
+        </button>
+
+
+        <button
+            class="nav-btn"
+            data-section="reportsSection"
+        >
+            📊 রিপোর্ট
+        </button>
+
+
+        <button
+            class="nav-btn"
+            data-section="settingsSection"
+        >
+            ⚙️ সেটিংস
+        </button>
+
+    </nav>
+
+
+
+    <!-- ========================= -->
+    <!-- ATTENDANCE -->
+    <!-- ========================= -->
+
+    <main
+        id="attendanceSection"
+        class="page-section active-section"
+    >
+
+        <div class="main-content">
+
+
+            <section class="control-card">
+
+                <div class="control-group">
+
+                    <label>
+                        ক্লাস নির্বাচন করুন
+                    </label>
+
+                    <select id="classSelect">
+
+                        <option value="">
+                            ক্লাস নির্বাচন করুন
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="control-group">
+
+                    <label>
+                        তারিখ
+                    </label>
+
+                    <input
+                        type="date"
+                        id="attendanceDate"
+                    >
+
+                </div>
+
+            </section>
+
+
+
+            <!-- SUMMARY -->
+
+            <section class="summary-grid">
+
+                <div class="summary-card total">
+                    <span>মোট ছাত্র</span>
+                    <strong id="totalStudents">0</strong>
+                </div>
+
+
+                <div class="summary-card present">
+                    <span>উপস্থিত</span>
+                    <strong id="presentCount">0</strong>
+                </div>
+
+
+                <div class="summary-card absent">
+                    <span>অনুপস্থিত</span>
+                    <strong id="absentCount">0</strong>
+                </div>
+
+
+                <div class="summary-card leave">
+                    <span>ছুটি</span>
+                    <strong id="leaveCount">0</strong>
+                </div>
+
+
+                <div class="summary-card sick">
+                    <span>অসুস্থ</span>
+                    <strong id="sickCount">0</strong>
+                </div>
+
+
+                <div class="summary-card late">
+                    <span>দেরিতে</span>
+                    <strong id="lateCount">0</strong>
+                </div>
+
+            </section>
+
+
+
+            <!-- ATTENDANCE CARD -->
+
+            <section class="attendance-card">
+
+
+                <div class="attendance-header">
+
+                    <div>
+
+                        <h2>
+                            ছাত্রদের হাজিরা
+                        </h2>
+
+                        <p id="selectedClassText">
+                            প্রথমে একটি ক্লাস নির্বাচন করুন
+                        </p>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+                        <button
+                            class="quick-btn present-quick"
+                            id="allPresentBtn"
+                        >
+                            🟢 সবাই উপস্থিত
+                        </button>
+
+
+                        <button
+                            class="quick-btn absent-quick"
+                            id="allAbsentBtn"
+                        >
+                            🔴 সবাই অনুপস্থিত
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    id="studentList"
+                    class="student-list"
+                >
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            👨‍🎓
+                        </div>
+
+                        <h3>
+                            কোনো ক্লাস নির্বাচন করা হয়নি
+                        </h3>
+
+                        <p>
+                            উপরের তালিকা থেকে একটি ক্লাস নির্বাচন করুন।
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="save-area">
+
+                    <button
+                        id="saveAttendanceBtn"
+                        class="save-btn"
+                    >
+                        💾 হাজিরা সংরক্ষণ করুন
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ========================= -->
+    <!-- CLASSES -->
+    <!-- ========================= -->
+
+    <main
+        id="classesSection"
+        class="page-section"
+    >
+
+        <div class="main-content">
+
+            <section class="management-card">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>
+                            🏫 ক্লাস ম্যানেজমেন্ট
+                        </h2>
+
+                        <p>
+                            ক্লাসের নাম পরিবর্তন করলে ছাত্রদের তথ্য থাকবে।
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        id="addClassBtn"
+                    >
+                        ➕ নতুন ক্লাস
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="classManagementList"
+                    class="management-list"
+                ></div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ========================= -->
+    <!-- REPORT -->
+    <!-- ========================= -->
+
+    <main
+        id="reportsSection"
+        class="page-section"
+    >
+
+        <div class="main-content">
+
+            <section class="management-card">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>
+                            📊 হাজিরা রিপোর্ট
+                        </h2>
+
+                        <p>
+                            সাপ্তাহিক, মাসিক ও বার্ষিক রিপোর্ট পরবর্তী ধাপে যুক্ত হবে।
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="report-coming">
+
+                    <div>
+                        📄
+                    </div>
+
+                    <h3>
+                        রিপোর্ট সিস্টেম
+                    </h3>
+
+                    <p>
+                        Database যুক্ত করার পর এখানে
+                        Print এবং PDF Download যুক্ত হবে।
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ========================= -->
+    <!-- SETTINGS -->
+    <!-- ========================= -->
+
+    <main
+        id="settingsSection"
+        class="page-section"
+    >
+
+        <div class="main-content">
+
+            <section class="management-card">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>
+                            ⚙️ মাদ্রাসার সেটিংস
+                        </h2>
+
+                        <p>
+                            মাদ্রাসার তথ্য এখানে পরিবর্তন করা যাবে।
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-form">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            মাদ্রাসার নাম
+                        </label>
+
+                        <input
+                            type="text"
+                            id="madrasaName"
+                            placeholder="মাদ্রাসার নাম"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label>
+                            মাদ্রাসার ঠিকানা
+                        </label>
+
+                        <textarea
+                            id="madrasaAddress"
+                            rows="3"
+                            placeholder="মাদ্রাসার ঠিকানা"
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label>
+                            মোবাইল নম্বর
+                        </label>
+
+                        <input
+                            type="text"
+                            id="madrasaPhone"
+                            placeholder="মোবাইল নম্বর"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label>
+                            অতিরিক্ত তথ্য
+                        </label>
+
+                        <textarea
+                            id="madrasaExtra"
+                            rows="3"
+                            placeholder="অতিরিক্ত তথ্য"
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <button
+                        class="save-settings-btn"
+                        id="saveSettingsBtn"
+                    >
+                        💾 সেটিংস সংরক্ষণ করুন
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- CLASS MODAL -->
+
+    <div
+        id="modalOverlay"
+        class="modal-overlay"
+    >
+
+        <div class="modal-box">
+
+            <button
+                class="modal-close"
+                id="modalClose"
+            >
+                ✕
+            </button>
+
+
+            <h2 id="modalTitle">
+                নতুন ক্লাস
+            </h2>
+
+
+            <div class="form-group">
+
+                <label>
+                    ক্লাসের নাম
+                </label>
+
+                <input
+                    type="text"
+                    id="classNameInput"
+                    placeholder="ক্লাসের নাম"
+                >
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="cancel-btn"
+                    id="cancelModalBtn"
+                >
+                    বাতিল
+                </button>
+
+
+                <button
+                    class="primary-btn"
+                    id="saveClassBtn"
+                >
+                    সংরক্ষণ
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
